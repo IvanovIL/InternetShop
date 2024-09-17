@@ -2,7 +2,8 @@
 using InternetShop.Models;
 using static InternetShop.Models.Color;
 using static InternetShop.Program;
-using static InternetShop.Body.Basket;
+
+
 namespace InternetShop.Body
 {
 	/// <summary>
@@ -10,20 +11,21 @@ namespace InternetShop.Body
 	/// </summary>
 	internal class electronicCategory : Products
 	{
+
 		public static void choiceProduct()
 		{
 			List<Products> ProductsElectronicList = new List<Products>()
-		{
-			new Products
 			{
+				new Products
+				{
 
-				Id = 1,
-				Name = "Телевизор Samsung",
-				Description = "Телевизор от производителей Samsung, " +
-				"43-дюймовым экраном и 4K-разрешением.\nПоддержка HDR улучшает качество цветопередачи, делает изображение более красочным.",
-				Amount = 20,
-				Price = 9.999m
-			  },
+					Id = 1,
+					Name = "Телевизор Samsung",
+					Description = "Телевизор от производителей Samsung, " +
+					"43-дюймовым экраном и 4K-разрешением.\nПоддержка HDR улучшает качество цветопередачи, делает изображение более красочным.",
+					Amount = 20,
+					Price = 9.999m
+				},
 			new Products
 			{
 				Id = 2,
@@ -43,17 +45,35 @@ namespace InternetShop.Body
 				Amount = 30,
 				Price = 4.999m,
 			}
+			};
 
 
-
-		};
 			try
 			{
+				//using (StreamWriter store = new StreamWriter(@"C:\Users\Admin\source\repos\InternetShop\Store.txt"))
+				//{
+				//	foreach (Products Product in ProductsElectronicList)
+				//	{
+				//		store.WriteLine(Convert.ToInt32(Product.Id));
+				//		store.WriteLine(Product.Name);
+				//		store.WriteLine(Product.Description);
+				//		store.WriteLine(Convert.ToInt32(Product.Amount));
+				//		store.WriteLine(Convert.ToDecimal(Product.Price));
+
+				//	}
+				//	store.Close();
+				//}
+
+				// Выводит продукты на консоль
+				Products[] product = new Products[ProductsElectronicList.Count];
+				ProductsElectronicList.CopyTo(product);
+
 				Green();
-				for (int i = 0; i < ProductsElectronicList.Count; i++)
+				for (int i = 0; i < product.Length; i++)
 				{
-					Console.WriteLine($"{ProductsElectronicList[i].Id}.{ProductsElectronicList[i].Name} {ProductsElectronicList[i].Price}");
+					Console.WriteLine($"{product[i].Id}.{product[i].Name} {product[i].Price}");
 				}
+
 				Console.Write("Выберите продукт по номеру: ");
 				Blue();
 				int selectId = int.Parse(Console.ReadLine());
@@ -76,11 +96,19 @@ namespace InternetShop.Body
 						int value = 0;
 						if (select == 1)
 						{
-							value = int.Parse(Console.ReadLine());
-							string userNameProduct = ProductsElectronicList[i].Name;
-							decimal userPriceProduct = ProductsElectronicList[i].Price * value;
+							if (ProductsElectronicList[i].Amount != 0)
+							{
+								value = int.Parse(Console.ReadLine());
+								ProductsElectronicList[i].Amount = -value;
+								string userNameProduct = ProductsElectronicList[i].Name;
+								decimal userPriceProduct = ProductsElectronicList[i].Price;
 
-							Basket basket = new Basket(userNameProduct, userPriceProduct);
+								Cart cart = new Cart(userNameProduct, userPriceProduct, value);
+							}
+							else
+							{
+								Console.WriteLine("Товар на складе отсутствует");
+							}
 						}
 						else if (select == 2)
 						{
@@ -97,6 +125,8 @@ namespace InternetShop.Body
 			}
 
 		}
+
+
 
 
 

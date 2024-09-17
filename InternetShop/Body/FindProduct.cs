@@ -1,9 +1,15 @@
 ﻿using static InternetShop.Models.Color;
+using static InternetShop.Body.electronicCategory;
+using InternetShop.Models;
+
 
 namespace InternetShop.Body
 {
 	internal class FindProduct
 	{
+		/// <summary>
+		/// Поиск продукта по его названию
+		/// </summary>
 		public FindProduct()
 		{
 			Green();
@@ -11,6 +17,11 @@ namespace InternetShop.Body
 			Blue();
 			string userName = Console.ReadLine();
 
+			
+
+
         }
+
+		
 	}
 }

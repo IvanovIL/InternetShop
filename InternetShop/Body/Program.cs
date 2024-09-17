@@ -1,5 +1,4 @@
-﻿using InternetShop.Body;
-using InternetShop.RegistrAndAuthorizat;
+﻿using InternetShop.RegistrAndAuthorizat;
 using static InternetShop.Models.Color;
 using static InternetShop.Body.electronicCategory;
 namespace InternetShop
@@ -65,6 +64,8 @@ namespace InternetShop
 				case "2":
 					break;
 				case "3":
+					break;
+				case "0":
 					break;
 				default:
 					Console.WriteLine("У нас нет такой категории товаров");

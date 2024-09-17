@@ -1,6 +1,4 @@
 ﻿using InternetShop.Body;
-using System;
-using System.ComponentModel.Design;
 using static InternetShop.Models.Color;
 using static InternetShop.Program;
 
@@ -49,9 +47,10 @@ namespace InternetShop.RegistrAndAuthorizat
 					Menu();
 					break;
 				case "2":
+					FindProduct find = new FindProduct();
 					break;
 				case "3":
-					Basket basket = new Basket("",0);
+					Cart cart = new Cart();
 					break;
 				case "4":
 					break;
