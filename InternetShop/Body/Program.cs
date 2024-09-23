@@ -1,12 +1,14 @@
 ﻿using InternetShop.RegistrAndAuthorizat;
 using static InternetShop.Models.Color;
-using static InternetShop.Body.electronicCategory;
+using static InternetShop.Body.Category.Electronic;
+
 namespace InternetShop
 {
     internal class Program
     {
-        public static int value = 0;
-		public static bool run = true;
+        private static int value = 0;
+		private static bool run = true;
+		private static string name_;
 		public static void Main(string[] args)
         {
             
@@ -24,7 +26,7 @@ namespace InternetShop
 			}
 
 		}
-
+		
         public static void Choice(string select)
         {
             switch (select)
@@ -33,6 +35,7 @@ namespace InternetShop
                     
                     authorization authorization = new authorization();
                     string Name = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Name.txt");
+					name_ = Name;
                     personalAccount account = new personalAccount(Name , value);
                     break;
                 case "2":
@@ -66,6 +69,7 @@ namespace InternetShop
 				case "3":
 					break;
 				case "0":
+					personalAccount account = new personalAccount(name_,value);
 					break;
 				default:
 					Console.WriteLine("У нас нет такой категории товаров");

@@ -1,4 +1,6 @@
-﻿using static InternetShop.Models.Color;
+﻿using InternetShop.Models;
+using Newtonsoft.Json;
+using static InternetShop.Models.Color;
 using static InternetShop.Program;
 
 namespace InternetShop.Body
@@ -15,7 +17,7 @@ namespace InternetShop.Body
 			Default();
 
 			Console.WriteLine($"{userNameProduct}-{userPriceProduct} * {value} = {userPriceProduct * value}");
-			WriterTXT(userNameProduct, userPriceProduct * value);
+			WriterProductJson(userNameProduct, userPriceProduct * value);
 			Console.Write("Команды:\n\nremove [номер] [количество] - удалить товар из корзины\ncheckout - оформить заказ" +
 				"\nclear - очистить корзину\nback - вернуться в главное меню\n\nВведите команду:");
 			string readLine = Console.ReadLine();
@@ -47,32 +49,35 @@ namespace InternetShop.Body
 		}
 		
 
-		public static void WriterTXT(string userNameProduct, decimal userPriceProduct)
+		public static void WriterProductJson(string userNameProduct, decimal userPriceProduct)
 		{
-			using (StreamWriter stream = new StreamWriter(@"C:\Users\Admin\source\repos\InternetShop\Cart.txt"))
+			Dictionary<string, decimal> list = new Dictionary<string, decimal>()
 			{
-				stream.WriteLine(userNameProduct);
-				stream.WriteLine(userPriceProduct);
-				stream.Close();
+				{userNameProduct,userPriceProduct }
 			};
+			 
+			var CartList = JsonConvert.SerializeObject(list);
+			
+			File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\CartList.json", CartList);
 		}
 
 		public Cart()
 		{
 			Green();
 			Console.WriteLine("======================================");
-			Console.Write("Добавленные товары в корзину: ");
+			Console.WriteLine("Добавленные товары в корзину: ");
 			Console.WriteLine("======================================");
 			Default();
-			string userNameProduct;
-			decimal userPriceProduct;
-			using (StreamReader stream = new StreamReader(@"C:\Users\Admin\source\repos\InternetShop\Cart.txt"))
-			{
-				userNameProduct = stream.ReadToEnd();
 
-				stream.Close();
-			}
-			Console.WriteLine(userNameProduct);
+			Dictionary<string, decimal> lists = new Dictionary<string, decimal>();
+			string jsonCart = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\CartList.json");
+			lists = JsonConvert.DeserializeObject<Dictionary<string, decimal>>(jsonCart);
+
+			foreach (var list in lists)
+			{
+                Console.WriteLine(list);
+            }
+			
 			Console.ReadLine();
 		}
 	}

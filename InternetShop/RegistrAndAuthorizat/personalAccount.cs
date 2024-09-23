@@ -1,4 +1,5 @@
 ﻿using InternetShop.Body;
+using System.Diagnostics.Contracts;
 using static InternetShop.Models.Color;
 using static InternetShop.Program;
 
@@ -6,8 +7,8 @@ namespace InternetShop.RegistrAndAuthorizat
 {
 	internal class personalAccount
 	{
-		public static bool run = true;
-	
+		private static bool run = true;
+		
 		public personalAccount(string Name , int value)
 		{
 			if (value == 0)
@@ -15,7 +16,7 @@ namespace InternetShop.RegistrAndAuthorizat
 				run = true;
 				value++;
 			}
-			else if (value <= 0)
+			else if (value < 0)
 			{
 				value--;
 			}
@@ -53,6 +54,7 @@ namespace InternetShop.RegistrAndAuthorizat
 					Cart cart = new Cart();
 					break;
 				case "4":
+					historyOrder history = new historyOrder();
 					break;
 				case "5":
 					break;

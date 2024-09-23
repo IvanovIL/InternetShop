@@ -1,6 +1,5 @@
 ﻿using static InternetShop.Models.Color;
-using static InternetShop.Body.electronicCategory;
-using InternetShop.Models;
+
 
 
 namespace InternetShop.Body
