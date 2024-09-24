@@ -1,4 +1,4 @@
-﻿
+﻿using static InternetShop.Program;
 
 namespace InternetShop.Body
 {

@@ -10,50 +10,46 @@ namespace InternetShop.Body.Category
     {
 		public static void choiceCloth()
 		{
-			List<Products> ProductsClothList = new List<Products>()
-			{
-				new Products
-				{
+			List<Products> ProductsClothList = new List<Products>();
+			//{
+			//	new Products
+			//	{
 
-					Id = 1,
-					Name = "телевизор samsung",
-					Description = "телевизор от производителей samsung, " +
-					"43-дюймовым экраном и 4k-разрешением.\nподдержка hdr улучшает качество цветопередачи, делает изображение более красочным.",
-					Amount = 20,
-					Price = 9.999m
-				},
-			new Products
-			{
-				Id = 2,
-				Name = "планшет huawie",
-				Description = "планшет от производителей huawie, черного цвета имеет диагональ экрана 11" +
-				" и использует android 13.x,\nчто раскрывает огромный потенциал устройства. " +
-				"благодаря процессору qualcomm snapdragon 870 с 8-ядерной архитектурой аппарат справляется с любыми задачами.",
-				Amount = 15,
-				Price = 6.999m
-			},
-			new Products
-			{
-				Id = 3,
-				Name = "смартфон redmi",
-				Description = "смартфон от производителей redmi, обладает 6.5-дюймовым super amoled-дисплеем, " +
-				"\nкоторый отображает глубокий черный цвет и гарантирует своевременную смену кадров.",
-				Amount = 30,
-				Price = 4.999m,
-			}
-			};
+			//		Id = 1,
+			//		Name = "Пальто",
+			//		Description = "Черное зимнее пальто. Хорошо защищает от холода и снега.",
+			//		Amount = 12,
+			//		Price = 6999m
+			//	},
+			//new Products
+			//{
+			//	Id = 2,
+			//	Name = "Кепка",
+			//	Description = "Белая тонкая летняя кепка.",
+			//	Amount = 45,
+			//	Price = 700m
+			//},
+			//new Products
+			//{
+			//	Id = 3,
+			//	Name = "Ботинки",
+			//	Description = "Зимние ботинки, утепленные с боковой молнией. Синего цвета.",
+			//	Amount = 28,
+			//	Price = 2000m,
+			//}
+			//};
 			try
 			{
-
+				
 				///достает из json список товаров
-				var jsonFileElectr = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Electronic.json");
-				ProductsClothList = JsonConvert.DeserializeObject<List<Products>>(jsonFileElectr);
+				var jsonFileCloths = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Cloth.json");
+				ProductsClothList = JsonConvert.DeserializeObject<List<Products>>(jsonFileCloths);
 
 				// Выводит продукты на консоль
 				Green();
 				for (int i = 0; i < ProductsClothList.Count; i++)
 				{
-					Console.WriteLine($"{ProductsClothList[i].Id}.{ProductsClothList[i].Name} {ProductsClothList[i].Price}");
+					Console.WriteLine($"{ProductsClothList[i].Id}.{ProductsClothList[i].Name} {ProductsClothList[i].Price} рублей");
 				}
 
 				Console.Write("Выберите продукт по номеру: ");
@@ -80,11 +76,12 @@ namespace InternetShop.Body.Category
 						{
 							if (ProductsClothList[i].Amount != 0)
 							{
+								// вычитает из общего товара количество заказного товара пользователя
 								value = int.Parse(Console.ReadLine());
 								ProductsClothList[i].Amount -= value;
 
-								var jsonFileElectronic = JsonConvert.SerializeObject(ProductsClothList);
-								File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Electronic.json", jsonFileElectronic);
+								var jsonFileCloth = JsonConvert.SerializeObject(ProductsClothList);
+								File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Electronic.json", jsonFileCloth);
 
 								string userNameProduct = ProductsClothList[i].Name;
 								decimal userPriceProduct = ProductsClothList[i].Price;

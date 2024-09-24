@@ -1,6 +1,8 @@
 ﻿using InternetShop.RegistrAndAuthorizat;
 using static InternetShop.Models.Color;
 using static InternetShop.Body.Category.Electronic;
+using static InternetShop.Body.Category.Book;
+using static InternetShop.Body.Category.Сloth;
 
 namespace InternetShop
 {
@@ -65,8 +67,10 @@ namespace InternetShop
 					choiceProduct();
 					break;
 				case "2":
+					choiceCloth();
 					break;
 				case "3":
+					choiceBook();
 					break;
 				case "0":
 					personalAccount account = new personalAccount(name_,value);
