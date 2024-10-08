@@ -9,8 +9,11 @@ namespace InternetShop.RegistrAndAuthorizat
 	{
 		private static bool run = true;
 		
+
 		public personalAccount(string Name , int value)
 		{
+			string history = "Ваш личный аккаунт";
+			historyOrder History = new historyOrder(history);
 			if (value == 0)
 			{
 				run = true;
@@ -30,7 +33,7 @@ namespace InternetShop.RegistrAndAuthorizat
 				Console.WriteLine("======================================\n");
 				Cyan();
 				Console.WriteLine("1.Просмотр категорий товаров\n2.Поиск товара" +
-					"\n3.Корзина\n4.История заказов\n5.Административные функции(только для администратора)\n6.Выйти");
+					"\n3.Корзина\n4.История заказов\n5.Административные функции(только для администратора)\n6.Проверить баланс средств\n7.Выйти");
 				
 				Blue();
 				string select = Console.ReadLine();
@@ -54,15 +57,30 @@ namespace InternetShop.RegistrAndAuthorizat
 					Cart cart = new Cart();
 					break;
 				case "4":
-					historyOrder history = new historyOrder();
+					historyOrder History = new historyOrder();
 					break;
 				case "5":
+					ProductManager productManager = new ProductManager();
 					break;
-				case "6":
+					case "6":
+					Wallet wallet = new Wallet();
+					break;
+				case "7":
 					run = false;
 					Console.Clear();
 					break;
+				default:
+                    Console.WriteLine("Я не знаю такой команды");
+                    break;
 			}
+		}
+
+		public personalAccount()
+		{
+			string Name = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Name.txt");
+			int value  = 0;
+
+			personalAccount personalAccount = new personalAccount(Name, value);
 		}
 	}
 }

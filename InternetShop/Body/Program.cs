@@ -3,6 +3,7 @@ using static InternetShop.Models.Color;
 using static InternetShop.Body.Category.Electronic;
 using static InternetShop.Body.Category.Book;
 using static InternetShop.Body.Category.Сloth;
+using InternetShop.Body;
 
 namespace InternetShop
 {
@@ -38,7 +39,7 @@ namespace InternetShop
                     authorization authorization = new authorization();
                     string Name = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Name.txt");
 					name_ = Name;
-                    personalAccount account = new personalAccount(Name , value);
+                    personalAccount account = new personalAccount(name_, value);
                     break;
                 case "2":
                     Registration registration = new Registration();
@@ -56,6 +57,8 @@ namespace InternetShop
 		public static void Menu()
 		{
 			Green();
+			string history = "Меню категории";
+			historyOrder History = new historyOrder(history);
 			Console.WriteLine("Категории товаров:\n1. Электроника\n2. Одежда\n3. Книги\n");
 			Console.Write("Введите номер категории для просмотра товаров или '0' для возврата в меню: ");
 			Blue();
@@ -73,7 +76,7 @@ namespace InternetShop
 					choiceBook();
 					break;
 				case "0":
-					personalAccount account = new personalAccount(name_,value);
+					personalAccount account = new personalAccount();
 					break;
 				default:
 					Console.WriteLine("У нас нет такой категории товаров");
@@ -81,6 +84,8 @@ namespace InternetShop
 			}
 
 		}
+
+		
 
 
 	}

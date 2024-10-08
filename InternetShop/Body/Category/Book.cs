@@ -19,7 +19,8 @@ namespace InternetShop.Body.Category
 			//		Name = "Стихи А.С.Пушкин",
 			//		Description = "Сборник стихов поэта А.С.Пушкина на 250 стр. Бумажный вариант с твердой обложкой.",
 			//		Amount = 20,
-			//		Price = 500m
+			//		Price = 500m,
+			//		generalId = 3
 			//	},
 			//new Products
 			//{
@@ -27,7 +28,8 @@ namespace InternetShop.Body.Category
 			//	Name = "Сборник рассказов Стругацких",
 			//	Description = "Сборник рассказов Аркадий и Борис Стругацких на 870 стр. Мягкая обложка.",
 			//	Amount = 15,
-			//	Price = 1500m
+			//	Price = 1500m,
+			//	generalId = 3
 			//},
 			//new Products
 			//{
@@ -36,10 +38,12 @@ namespace InternetShop.Body.Category
 			//	Description = "Сборник сказок для детей. 380 стр. Мягкая обложка.",
 			//	Amount = 30,
 			//	Price = 1000.50m,
+			//	generalId = 3
 			//}
 			//};
 			try
 			{
+
 				//достает из json список товаров
 				var jsonFileBook = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Book.json");
 				ProductsBooksList = JsonConvert.DeserializeObject<List<Products>>(jsonFileBook);
@@ -78,14 +82,13 @@ namespace InternetShop.Body.Category
 								// вычитает из общего товара количество заказного товара пользователя
 								value = int.Parse(Console.ReadLine());
 								ProductsBooksList[i].Amount -= value;
-
+								// сохраняет товар в json файл
 								var jsonFileBooks = JsonConvert.SerializeObject(ProductsBooksList);
 								File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Book.json", jsonFileBooks);
 
-								string userNameProduct = ProductsBooksList[i].Name;
-								decimal userPriceProduct = ProductsBooksList[i].Price;
-
-								Cart cart = new Cart(userNameProduct, userPriceProduct, value);
+							
+								// передает товар в корзину
+								Cart cart = new Cart(ProductsBooksList[i].Name, ProductsBooksList[i].Price, value, ProductsBooksList[i].categoryId);
 							}
 							else
 							{

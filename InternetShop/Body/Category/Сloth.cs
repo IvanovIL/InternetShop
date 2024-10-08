@@ -19,7 +19,8 @@ namespace InternetShop.Body.Category
 			//		Name = "Пальто",
 			//		Description = "Черное зимнее пальто. Хорошо защищает от холода и снега.",
 			//		Amount = 12,
-			//		Price = 6999m
+			//		Price = 6999m,
+			//		generalId = 2
 			//	},
 			//new Products
 			//{
@@ -27,7 +28,8 @@ namespace InternetShop.Body.Category
 			//	Name = "Кепка",
 			//	Description = "Белая тонкая летняя кепка.",
 			//	Amount = 45,
-			//	Price = 700m
+			//	Price = 700m,
+			//	generalId = 2
 			//},
 			//new Products
 			//{
@@ -36,12 +38,13 @@ namespace InternetShop.Body.Category
 			//	Description = "Зимние ботинки, утепленные с боковой молнией. Синего цвета.",
 			//	Amount = 28,
 			//	Price = 2000m,
+			//	generalId = 2
 			//}
 			//};
 			try
 			{
-				
-				///достает из json список товаров
+
+				//достает из json список товаров
 				var jsonFileCloths = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Cloth.json");
 				ProductsClothList = JsonConvert.DeserializeObject<List<Products>>(jsonFileCloths);
 
@@ -79,14 +82,11 @@ namespace InternetShop.Body.Category
 								// вычитает из общего товара количество заказного товара пользователя
 								value = int.Parse(Console.ReadLine());
 								ProductsClothList[i].Amount -= value;
-
+								// сохраняет товар в json файл
 								var jsonFileCloth = JsonConvert.SerializeObject(ProductsClothList);
-								File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Electronic.json", jsonFileCloth);
-
-								string userNameProduct = ProductsClothList[i].Name;
-								decimal userPriceProduct = ProductsClothList[i].Price;
-
-								Cart cart = new Cart(userNameProduct, userPriceProduct, value);
+								File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Cloth.json", jsonFileCloth);
+								// передает товар в корзину
+								Cart cart = new Cart(ProductsClothList[i].Name, ProductsClothList[i].Price, value, ProductsClothList[i].categoryId);
 							}
 							else
 							{
