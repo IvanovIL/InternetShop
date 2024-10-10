@@ -1,6 +1,8 @@
-﻿using InternetShop.Models;
+﻿using ConsoleShop.Body;
+using InternetShop.Models;
 using InternetShop.RegistrAndAuthorizat;
 using Newtonsoft.Json;
+using System.Net;
 
 
 namespace InternetShop.Body
@@ -10,10 +12,14 @@ namespace InternetShop.Body
 		private static decimal wallet = 0;
 		private static int value = 0;
 		string Name = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Name.txt");
+		
 		public Wallet()
 		{
+			var wallets = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Wallet.json");
+			wallet =Convert.ToDecimal(JsonConvert.DeserializeObject(wallets));
+
 			string history = "Кошелёк";
-			historyOrder History = new historyOrder(history);
+			visitHistory History = new visitHistory(history);
 			Console.WriteLine($"Баланс средств на вашем аккаунте равен: {wallet}" +
 				$"\n\nВыберите команду:\n\n1 - Пополнить баланс" +
 				$"\n2 - Посмотреть историю покупок\n3 - Выйти в меню");
@@ -42,10 +48,14 @@ namespace InternetShop.Body
 
 			wallet += userMoney;
 			Console.WriteLine($"Ваш баланс равен: {userMoney} рублей");
+			var wallets = JsonConvert.SerializeObject(wallet);
+			File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Wallet.json", wallets);
 		}
 
 		public Wallet(decimal priceProduct)
 		{
+			var wallets = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Wallet.json");
+			wallet = Convert.ToDecimal(JsonConvert.DeserializeObject(wallets));
 
 			if ((wallet -= priceProduct) >= 0)
 			{
@@ -54,11 +64,11 @@ namespace InternetShop.Body
 				List<Product> list = new List<Product>();
 				var CartLists = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\CartList.json");
 				list = JsonConvert.DeserializeObject<List<Product>>(CartLists);
-				list.Clear();
 				for (int i = 0; i < list.Count; i++)
 				{
-					Console.WriteLine($"{i + 1}:{list[i].Name} {list[i].Price} * {list[i].Amount}");
+					historyOrder historyOrder = new historyOrder(list[i].Name, list[i].Amount, list[i].Price);
 				}
+				list.Clear();
 				var CartListClear = JsonConvert.SerializeObject(list);
 				File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\CartList.json", CartListClear);
 			}

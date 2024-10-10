@@ -4,8 +4,6 @@ using static InternetShop.Program;
 using static InternetShop.Models.Color;
 using InternetShop.Exception;
 
-
-
 namespace InternetShop.Body
 {
 	internal class FindProduct
@@ -16,6 +14,8 @@ namespace InternetShop.Body
 		/// </summary>
 		public FindProduct()
 		{
+			string history = "Поиск продукта по названию";
+			visitHistory visit = new visitHistory(history);
 			int number = 0;
 			Green();
 			Console.Write("Введите категорию продукта:");
@@ -38,7 +38,6 @@ namespace InternetShop.Body
 					Console.ReadLine();
 					break;
 			}
-
 		}
 		private static List<Products> ProductsList = new List<Products>();
 		public static void Find(int number)
@@ -104,7 +103,6 @@ namespace InternetShop.Body
 						{
 							Menu();
 						}
-
 					}
 				}
 			}

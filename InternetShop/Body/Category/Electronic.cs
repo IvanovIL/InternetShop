@@ -1,7 +1,6 @@
 ﻿using InternetShop.Exception;
 using InternetShop.Models;
 using Newtonsoft.Json;
-using System.Linq;
 using static InternetShop.Models.Color;
 using static InternetShop.Program;
 

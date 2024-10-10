@@ -6,6 +6,7 @@ using static InternetShop.Body.Category.Сloth;
 using InternetShop.Body;
 
 namespace InternetShop
+
 {
     internal class Program
     {
@@ -58,7 +59,7 @@ namespace InternetShop
 		{
 			Green();
 			string history = "Меню категории";
-			historyOrder History = new historyOrder(history);
+			visitHistory History = new visitHistory(history);
 			Console.WriteLine("Категории товаров:\n1. Электроника\n2. Одежда\n3. Книги\n");
 			Console.Write("Введите номер категории для просмотра товаров или '0' для возврата в меню: ");
 			Blue();

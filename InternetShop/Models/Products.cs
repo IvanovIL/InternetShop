@@ -1,5 +1,4 @@
 ﻿
-
 namespace InternetShop.Models
 {
 	public class Products()
@@ -24,7 +23,7 @@ namespace InternetShop.Models
 
 		public int Amount { get; set; }
 
-		public int generalId { get; set; }
+		public int categoryId { get; set; }
 
 
 	}

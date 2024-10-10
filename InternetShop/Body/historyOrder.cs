@@ -1,36 +1,46 @@
-﻿using Newtonsoft.Json;
+﻿using InternetShop.Models;
+using Newtonsoft.Json;
 
-namespace InternetShop.Body
+
+namespace ConsoleShop.Body
 {
 	public class historyOrder
 	{
-		public historyOrder(string history)
-		{
-			List<string> History = new List<string>();
-			var jsonHistoryOrd = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\HistoryOrder.json");
-			History = JsonConvert.DeserializeObject<List<string>>(jsonHistoryOrd);
-
-			for (int i = 0; i < History.Count; i++)
-			{
-				History.Add(history); 
-				var jsonHistoryOrder = JsonConvert.SerializeObject(History);
-				File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\HistoryOrder.json", jsonHistoryOrder);
-				break;
-			}
-		}
-
+		/// <summary>
+		/// Оплаченные заказы пользователя
+		/// </summary>
 		public historyOrder()
 		{
-			List<string> History = new List<string>();
-			var jsonHistoryOrd = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\HistoryOrder.json");
-			History = JsonConvert.DeserializeObject<List<string>>(jsonHistoryOrd);
-			for(int i = 0; i < History.Count; i++)
+			List<Product> userOrder = new List<Product>();
+			var historyOrder = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\HistoryOrder.json");
+			userOrder = JsonConvert.DeserializeObject<List<Product>>(historyOrder);
+
+			Console.WriteLine("Ваши заказы: ");
+			for (int i = 0; i < userOrder.Count; i++)
 			{
-				Console.WriteLine($"{History[i]}");
-            }
-			Console.ReadLine();	
+				Console.WriteLine($"{userOrder[i].Name} {userOrder[i].Amount} * {userOrder[i].Price} = {userOrder[i].Amount * userOrder[i].Price} рублей");
+			}
 		}
+		public historyOrder(string name, int amount, decimal price)
+		{
+			List<Product> userOrder = new List<Product>();
+			var historyOrder = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\HistoryOrder.json");
+			userOrder = JsonConvert.DeserializeObject<List<Product>>(historyOrder);
 
+			userOrder.Add(new Product
+			{
+				Name = name,
+				Amount = amount,
+				Price = price
+			}
+			);
+			
 
+			var historyOrders = JsonConvert.SerializeObject(userOrder);
+			File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\HistoryOrder.json", historyOrders);
+		}
 	}
+
+	
+
 }

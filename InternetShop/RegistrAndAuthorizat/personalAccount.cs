@@ -1,4 +1,5 @@
-﻿using InternetShop.Body;
+﻿using ConsoleShop.Body;
+using InternetShop.Body;
 using System.Diagnostics.Contracts;
 using static InternetShop.Models.Color;
 using static InternetShop.Program;
@@ -13,7 +14,7 @@ namespace InternetShop.RegistrAndAuthorizat
 		public personalAccount(string Name , int value)
 		{
 			string history = "Ваш личный аккаунт";
-			historyOrder History = new historyOrder(history);
+			visitHistory History = new visitHistory(history);
 			if (value == 0)
 			{
 				run = true;
@@ -33,7 +34,8 @@ namespace InternetShop.RegistrAndAuthorizat
 				Console.WriteLine("======================================\n");
 				Cyan();
 				Console.WriteLine("1.Просмотр категорий товаров\n2.Поиск товара" +
-					"\n3.Корзина\n4.История заказов\n5.Административные функции(только для администратора)\n6.Проверить баланс средств\n7.Выйти");
+					"\n3.Корзина\n4.История заказов\n5.Административные функции(только для администратора)\n6.Проверить баланс средств" +
+					"\n7.Проверить свою историю посещения\n8.Выйти");
 				
 				Blue();
 				string select = Console.ReadLine();
@@ -57,7 +59,7 @@ namespace InternetShop.RegistrAndAuthorizat
 					Cart cart = new Cart();
 					break;
 				case "4":
-					historyOrder History = new historyOrder();
+					historyOrder order = new historyOrder();
 					break;
 				case "5":
 					ProductManager productManager = new ProductManager();
@@ -66,8 +68,11 @@ namespace InternetShop.RegistrAndAuthorizat
 					Wallet wallet = new Wallet();
 					break;
 				case "7":
-					run = false;
+					visitHistory History = new visitHistory();
+					break;
+				case "8":
 					Console.Clear();
+					run = false;
 					break;
 				default:
                     Console.WriteLine("Я не знаю такой команды");
