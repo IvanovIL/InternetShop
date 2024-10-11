@@ -2,7 +2,6 @@
 using InternetShop.Models;
 using InternetShop.RegistrAndAuthorizat;
 using Newtonsoft.Json;
-using System.Net;
 
 
 namespace InternetShop.Body
@@ -40,7 +39,9 @@ namespace InternetShop.Body
 
 			Console.ReadLine();
 		}
-
+		/// <summary>
+		/// Пополнение баланса
+		/// </summary>
 		public static void replenishBalance()
 		{
 			Console.Write("Сколько рублей перевести на ваш счет:");
@@ -51,7 +52,10 @@ namespace InternetShop.Body
 			var wallets = JsonConvert.SerializeObject(wallet);
 			File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Wallet.json", wallets);
 		}
-
+		/// <summary>
+		/// Оплата товара
+		/// </summary>
+		
 		public Wallet(decimal priceProduct)
 		{
 			var wallets = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Wallet.json");
@@ -59,8 +63,11 @@ namespace InternetShop.Body
 
 			if ((wallet -= priceProduct) >= 0)
 			{
+				var Wallets = JsonConvert.SerializeObject(wallet);
+				File.WriteAllText(@"C:\Users\Admin\source\repos\InternetShop\Wallet.json", Wallets);
+
 				Console.WriteLine("Заказ успешно оплачен");
-				Console.ReadLine();
+
 				List<Product> list = new List<Product>();
 				var CartLists = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\CartList.json");
 				list = JsonConvert.DeserializeObject<List<Product>>(CartLists);
@@ -75,7 +82,6 @@ namespace InternetShop.Body
 			else
 			{
 				Console.WriteLine("На счету недостаточно средств!");
-				Console.ReadLine();
 				Wallet wallet = new Wallet();
 			}
 

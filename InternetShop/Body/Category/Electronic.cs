@@ -27,7 +27,7 @@ namespace InternetShop.Body.Category
 			//		"43-дюймовым экраном и 4k-разрешением.\nподдержка hdr улучшает качество цветопередачи, делает изображение более красочным.",
 			//		Amount = 20,
 			//		Price = 9999.90m,
-			//		generalId = 1
+			//		categoryId = 1
 			//	},
 			//new Products
 			//{
@@ -38,7 +38,7 @@ namespace InternetShop.Body.Category
 			//	"благодаря процессору qualcomm snapdragon 870 с 8-ядерной архитектурой аппарат справляется с любыми задачами.",
 			//	Amount = 15,
 			//	Price = 6000.50m,
-			//	generalId = 1
+			//	categoryId = 1
 			//},
 			//new Products
 			//{
@@ -48,13 +48,14 @@ namespace InternetShop.Body.Category
 			//	"\nкоторый отображает глубокий черный цвет и гарантирует своевременную смену кадров.",
 			//	Amount = 30,
 			//	Price = 4000m,
-			//	generalId=1
+			//	categoryId = 1
 			//}
 			//};
 
 
 			try
 			{
+
 				///достает из json список товаров
 				var jsonFileElectr = File.ReadAllText(@"C:\Users\Admin\source\repos\InternetShop\Electronic.json");
 				ProductsElectronicList = JsonConvert.DeserializeObject<List<Products>>(jsonFileElectr);

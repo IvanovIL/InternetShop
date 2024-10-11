@@ -20,7 +20,7 @@ namespace InternetShop.Body.Category
 			//		Description = "Черное зимнее пальто. Хорошо защищает от холода и снега.",
 			//		Amount = 12,
 			//		Price = 6999m,
-			//		generalId = 2
+			//		categoryId = 2
 			//	},
 			//new Products
 			//{
@@ -29,7 +29,7 @@ namespace InternetShop.Body.Category
 			//	Description = "Белая тонкая летняя кепка.",
 			//	Amount = 45,
 			//	Price = 700m,
-			//	generalId = 2
+			//	categoryId = 2
 			//},
 			//new Products
 			//{
@@ -38,7 +38,7 @@ namespace InternetShop.Body.Category
 			//	Description = "Зимние ботинки, утепленные с боковой молнией. Синего цвета.",
 			//	Amount = 28,
 			//	Price = 2000m,
-			//	generalId = 2
+			//	categoryId = 2
 			//}
 			//};
 			try

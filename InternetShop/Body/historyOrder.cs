@@ -20,6 +20,7 @@ namespace ConsoleShop.Body
 			{
 				Console.WriteLine($"{userOrder[i].Name} {userOrder[i].Amount} * {userOrder[i].Price} = {userOrder[i].Amount * userOrder[i].Price} рублей");
 			}
+			Console.ReadLine();
 		}
 		public historyOrder(string name, int amount, decimal price)
 		{

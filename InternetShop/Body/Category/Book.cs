@@ -20,7 +20,7 @@ namespace InternetShop.Body.Category
 			//		Description = "Сборник стихов поэта А.С.Пушкина на 250 стр. Бумажный вариант с твердой обложкой.",
 			//		Amount = 20,
 			//		Price = 500m,
-			//		generalId = 3
+			//		categoryId = 3
 			//	},
 			//new Products
 			//{
@@ -29,7 +29,7 @@ namespace InternetShop.Body.Category
 			//	Description = "Сборник рассказов Аркадий и Борис Стругацких на 870 стр. Мягкая обложка.",
 			//	Amount = 15,
 			//	Price = 1500m,
-			//	generalId = 3
+			//	categoryId = 3
 			//},
 			//new Products
 			//{
@@ -38,7 +38,7 @@ namespace InternetShop.Body.Category
 			//	Description = "Сборник сказок для детей. 380 стр. Мягкая обложка.",
 			//	Amount = 30,
 			//	Price = 1000.50m,
-			//	generalId = 3
+			//	categoryId = 3
 			//}
 			//};
 			try
